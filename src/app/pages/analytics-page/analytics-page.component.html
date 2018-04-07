@@ -1,0 +1,156 @@
+<h2>Analytics</h2>
+<p style="font-weight:bold">Access the performance of the project using the wide range of metrics available</p>
+<div class="">
+    <p>Specify Date Ranges </p>
+    <div style="margin-top:10px">
+        <label for="from">From</label>
+        <input type="date" id="from" [(ngModel)]="fromDate">
+        <label for="to">To</label>
+        <input type="date" id="to" [(ngModel)]="toDate">
+        <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+
+</div>
+
+<h4 style=" margin-top:30px;border-bottom:1px solid gray">Volunteers</h4>
+
+<div class="row" *ngIf="chartsData">
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Volunteers Within the period</h3>
+                <clr-datagrid>
+                    <clr-dg-column>Volunteer Name</clr-dg-column>
+                    <clr-dg-column>Volunteer Email</clr-dg-column>
+                    <clr-dg-column>Time</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let volunteer of volunteers">
+
+                        <clr-dg-cell>{{volunteer.volunteerName}}</clr-dg-cell>
+                        <clr-dg-cell>{{volunteer.volunteerEmail}}</clr-dg-cell>
+                        <clr-dg-cell>{{volunteer.timestamp | date}}</clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Volunteers breakdown Per activity</h3>
+                <small>Note, this graph does not change with respect to time range</small>
+                <canvas *ngIf="volunteerBreakdownValues.length > 0" baseChart [data]="volunteerBreakdownValues" [labels]="volunteerBreakdownLabels" [chartType]="chartsData.doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="volunteerGraphValues">
+            <div class="card-block">
+                <h3 class="card-title">Volunteers per month within period</h3>
+                <canvas baseChart [datasets]="volunteerGraphValues" [labels]="volunteerGraphLabels" [options]="chartsData.barChartOptions" [legend]="chartsData.barChartLegend" [chartType]="chartsData.barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<h4 style=" margin-top:30px;border-bottom:1px solid gray">Beneficiaries</h4>
+
+
+<div class="row" *ngIf="chartsData">
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Beneficiaries Within the period</h3>
+                <clr-datagrid>
+                    <clr-dg-column>Beneficiary Demography</clr-dg-column>
+                    <clr-dg-column>Beneficiary Number</clr-dg-column>
+                    <clr-dg-column>Date Added</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let beneficiary of beneficiaries">
+
+                        <clr-dg-cell>{{beneficiary.beneficiaryDemography}}</clr-dg-cell>
+                        <clr-dg-cell>{{beneficiary.beneficiaryNumber}}</clr-dg-cell>
+                        <clr-dg-cell>{{beneficiary.timestamp | date}}</clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Beneficiaries breakdown Per activity</h3>
+                <small>Note, this graph does not change with respect to time range</small>
+                <canvas *ngIf="beneficiaryBreakdownValues.length > 0" baseChart [data]="beneficiaryBreakdownValues" [labels]="beneficiaryBreakdownLabels" [chartType]="chartsData.doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="beneficiaryGraphValues">
+            <div class="card-block">
+                <h3 class="card-title">Beneficiaries per month within period</h3>
+                <canvas baseChart [datasets]="beneficiaryGraphValues" [labels]="beneficiaryGraphLabels" [options]="chartsData.barChartOptions" [legend]="chartsData.barChartLegend" [chartType]="chartsData.barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<h4 style=" margin-top:30px;border-bottom:1px solid gray">Spending</h4>
+
+
+<div class="row" *ngIf="chartsData">
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Spending Within the period</h3>
+                <clr-datagrid>
+                    <clr-dg-column>Item Name</clr-dg-column>
+                    <clr-dg-column>Amount Spent</clr-dg-column>
+                    <clr-dg-column>Date Added</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let spent of spending">
+
+                        <clr-dg-cell>{{spent.itemName}}</clr-dg-cell>
+                        <clr-dg-cell>GHS {{spent.moneySpent}}</clr-dg-cell>
+                        <clr-dg-cell>{{spent.timestamp | date}}</clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Spending breakdown Per activity</h3>
+                <small>Note, this graph does not change with respect to time range</small>
+                <canvas baseChart *ngIf="spendingBreakdownValues.length > 0" [data]="spendingBreakdownValues" [labels]="spendingBreakdownLabels" [chartType]="chartsData.doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="spendingGraphValues">
+            <div class="card-block">
+                <h3 class="card-title">Spending per month within period</h3>
+                <canvas baseChart [datasets]="spendingGraphValues" [labels]="spendingGraphLabels" [options]="chartsData.barChartOptions" [legend]="chartsData.barChartLegend" [chartType]="chartsData.barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+</div>

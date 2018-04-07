@@ -1,0 +1,39 @@
+<h2>Reflections on this project </h2>
+<span>All the project Tasks</span>
+
+<div class="row">
+    <div class="col-sm-12 col-md-3">
+        <clr-datagrid>
+            <clr-dg-column>Reflections</clr-dg-column>
+
+            <clr-dg-row *ngFor="let reflection of reflections" (click)="selectreflection(reflection)">
+                <clr-dg-cell>
+                    <div style="display:flex">
+                        <div style="margin:10px">
+                            <ngx-avatar name="{{reflection.title}}"></ngx-avatar>
+                        </div>
+                        <div>
+                            <p style="margin-top:1.5em">{{reflection.title}}</p>
+                        </div>
+                    </div>
+                </clr-dg-cell>
+            </clr-dg-row>
+
+
+        </clr-datagrid>
+    </div>
+
+    <div class="col-sm-12 col-md-9">
+        <div class="card" *ngIf="selectedReflection">
+            <div class="card-header">
+                {{selectedReflection.title}} - <small>{{selectedReflection.createdAt | date}}</small>
+            </div>
+            <div style="margin:30px">
+                <quill-editor [(ngModel)]="selectedReflection.text" readOnly="true" theme="bubble"></quill-editor>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

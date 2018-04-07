@@ -1,0 +1,123 @@
+<h2>Activities</h2>
+<span>All the project Tasks</span>
+
+<div class="row">
+    <div class="col-sm-12 col-md-3">
+        <clr-datagrid>
+            <clr-dg-column>Activities</clr-dg-column>
+
+            <clr-dg-row *ngFor="let activity of activities" (click)="selectActivity(activity)">
+                <clr-dg-cell>
+                    <div style="display:flex">
+                        <div style="margin:10px">
+                            <ngx-avatar name="{{activity.activityName}}"></ngx-avatar>
+                        </div>
+                        <div>
+                            <p style="margin-top:1.5em">{{activity.activityName}}</p>
+                        </div>
+                    </div>
+                </clr-dg-cell>
+            </clr-dg-row>
+
+
+        </clr-datagrid>
+    </div>
+    <div class="col-sm-12 col-md-9">
+        <div class="card" *ngIf="selectedActivity">
+            <div class="card-header">
+                Activity Name
+            </div>
+            <div class="card-block">
+                <clr-tabs>
+                    <clr-tab>
+                        <button clrTabLink id="link1">Spending</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            <clr-datagrid>
+                                <clr-dg-column>Item Name</clr-dg-column>
+                                <clr-dg-column>Money Spent</clr-dg-column>
+                                <clr-dg-column>Time</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let spending of selectedActivity.spending">
+
+                                    <clr-dg-cell>{{spending.itemName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{spending.moneySpent}}</clr-dg-cell>
+                                    <clr-dg-cell>{{spending.timestamp | date}}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </clr-tab-content>
+                    </clr-tab>
+                    <clr-tab>
+                        <button clrTabLink>Beneficiaries</button>
+                        <clr-tab-content *clrIfActive="true">
+                            <clr-datagrid>
+                                <clr-dg-column>Demography</clr-dg-column>
+                                <clr-dg-column>Number</clr-dg-column>
+                                <clr-dg-column>Time</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let beneficiary of selectedActivity.beneficiaries">
+
+                                    <clr-dg-cell>{{beneficiary.beneficiaryDemography}}</clr-dg-cell>
+                                    <clr-dg-cell>{{beneficiary.beneficiaryNumber}}</clr-dg-cell>
+                                    <clr-dg-cell>{{beneficiary.timestamp | date}}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </clr-tab-content>
+                    </clr-tab>
+                    <clr-tab>
+                        <button clrTabLink>Volunteers</button>
+                        <clr-tab-content *clrIfActive="true">
+                            <clr-datagrid>
+                                <clr-dg-column>Volunteer Name</clr-dg-column>
+                                <clr-dg-column>Volunteer Email</clr-dg-column>
+                                <clr-dg-column>Time</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let volunteer of selectedActivity.volunteers">
+
+                                    <clr-dg-cell>{{volunteer.volunteerName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{volunteer.volunteerEmail}}</clr-dg-cell>
+                                    <clr-dg-cell>{{volunteer.timestamp | date}}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </clr-tab-content>
+                    </clr-tab>
+                </clr-tabs>
+
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link" (click)="closePannel()">Close</button>
+            </div>
+        </div>
+
+        <div class="card" *ngIf="selectedActivity">
+            <div class="card-header">
+                Comments
+            </div>
+            <div class="card-block">
+                <form style="border-bottom: 1px solid #dbdbdb;">
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="aForm_4">Comment on this Activity</label>
+                            <textarea id="aForm_4" rows="5" [(ngModel)]="comment" name="comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" (click)="postComment()">Post</button>
+                    </section>
+                </form>
+                <div style="display:flex; border-bottom: 1px solid #dbdbdb; padding:20px" *ngFor="let comment of selectedActivity.comments">
+                    <div style="margin:  10px;">
+                        <ngx-avatar name="{{comment.userName}}"></ngx-avatar>
+                    </div>
+                    <div style="flex:1;">
+                        <p style="margin-top:0.5em">{{comment.comment}}</p>
+                        <small style="font-weight:600">By {{comment.userName}} on {{comment.date}}</small>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

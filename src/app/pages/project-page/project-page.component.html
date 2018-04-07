@@ -1,0 +1,64 @@
+<h2>Dashboard</h2>
+<div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="projectAggregations">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Total Amount Spent Over Time</h3>
+                <p class="card-text">
+                    GHS {{projectAggregations.amount_spent.value}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="projectAggregations">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Number of Activites</h3>
+                <p class="card-text">
+                    {{projectAggregations.number_of_activities.value}} activities
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="projectAggregations">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Lives affected</h3>
+                <p class="card-text">
+                    {{projectAggregations.beneficiary_number.value}} Lives
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="lineChartLabels">
+            <div class="card-block">
+                <h3 class="card-title">Lives affected over Time</h3>
+                <div style="display: block;">
+                    <canvas baseChart height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="barChartLabels">
+            <div class="card-block">
+                <h3 class="card-title">Spending Over Time</h3>
+                <div style="display: block">
+                    <canvas baseChart [datasets]="barChartData" [colors]="barChartColors" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" *ngIf="barChartLabels2">
+            <div class="card-block">
+                <h3 class="card-title">Volunteers per Month</h3>
+                <div style="display: block">
+                    <canvas baseChart [datasets]="barChartData2" [labels]="barChartLabels2" [options]="barChartOptions2" [legend]="barChartLegend2" [chartType]="barChartType2" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

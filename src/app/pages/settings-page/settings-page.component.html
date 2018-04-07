@@ -1,0 +1,185 @@
+<h2>Project Settings</h2>
+
+<clr-tabs>
+    <clr-tab>
+        <button clrTabLink id="link1">Activities</button>
+
+        <clr-tab-content id="content1" *clrIfActive="true">
+            <clr-datagrid>
+                <clr-dg-column>Activity Name</clr-dg-column>
+                <clr-dg-column>Activity Description</clr-dg-column>
+                <clr-dg-column>Activity Amount</clr-dg-column>
+                <clr-dg-column>Activity Beneficiaries</clr-dg-column>
+
+
+                <clr-dg-row *ngFor="let activity of activities" (click)="open(activity)">
+                    <clr-dg-cell>{{activity.activityName}}</clr-dg-cell>
+                    <clr-dg-cell>{{activity.activityDescription}}</clr-dg-cell>
+                    <clr-dg-cell>{{activity.activityAmount}}</clr-dg-cell>
+                    <clr-dg-cell>{{activity.activityBeneficiaries}}</clr-dg-cell>
+                </clr-dg-row>
+
+            </clr-datagrid>
+        </clr-tab-content>
+
+        <clr-modal [(clrModalOpen)]="activityToggle" *ngIf="selectedActivity">
+            <h3 class="modal-title">Edit Activity</h3>
+            <div class="modal-body">
+                <form>
+                    <section class="form-block">
+                        <div class="form-group">
+                            <label for="aForm_1">Activity Name</label>
+                            <input type="text" name="activityName" id="aForm_1" placeholder="Enter value here" [(ngModel)]="selectedActivity.activityName" size="45">
+                        </div>
+                        <div class="form-group">
+                            <label for="aForm_4">Activity Description</label>
+                            <textarea id="aForm_4" name="activityDescription" rows="5" [(ngModel)]="selectedActivity.activityDescription"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="aForm_2">Activity Beneficiaries</label>
+                            <input type="number" name="activityBeneficiaries" id="aForm_2" placeholder="Enter another value here" [(ngModel)]="selectedActivity.activityBeneficiaries" size="35">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="aForm_2">Activity Amount</label>
+                            <input type="number" name="activityAmount" id="aForm_2" placeholder="Enter another value here" [(ngModel)]="selectedActivity.activityAmount" size="35">
+                        </div>
+                    </section>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" (click)="close()">Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+            </div>
+        </clr-modal>
+
+    </clr-tab>
+    <clr-tab>
+        <button clrTabLink>Volunteers</button>
+        <clr-tab-content *clrIfActive>
+            <clr-datagrid>
+                <clr-dg-column>Volunteer Name</clr-dg-column>
+                <clr-dg-column>Volunteer Email</clr-dg-column>
+
+                <clr-dg-row *ngFor="let volunteer of volunteers" (click)="volunteerOpen(volunteer)">
+                    <clr-dg-cell>{{volunteer.volunteerName}}</clr-dg-cell>
+                    <clr-dg-cell>{{volunteer.volunteerEmail}}</clr-dg-cell>
+
+                </clr-dg-row>
+
+            </clr-datagrid>
+
+            <clr-modal [(clrModalOpen)]="volunteerToggle" *ngIf="selectedVolunteer">
+                <h3 class="modal-title">Edit Volunteer</h3>
+                <div class="modal-body">
+                    <form>
+                        <section class="form-block">
+                            <div class="form-group">
+                                <label for="aForm_1">Volunteer Name</label>
+                                <input type="text" name="activityName" id="aForm_1" placeholder="Enter value here" [(ngModel)]="selectedVolunteer.volunteerName" size="45">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aForm_2">Volunteer Email</label>
+                                <input type="text" name="activityBeneficiaries" id="aForm_2" placeholder="Enter another value here" [(ngModel)]="selectedVolunteer.volunteerEmail" size="35">
+                            </div>
+
+                        </section>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" (click)="volunteerClose()">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="volunteerSave()">Save</button>
+                </div>
+            </clr-modal>
+
+        </clr-tab-content>
+    </clr-tab>
+    <clr-tab>
+        <button clrTabLink>Beneficiaries</button>
+        <clr-tab-content *clrIfActive>
+            <clr-datagrid>
+                <clr-dg-column>Beneficiary Demography</clr-dg-column>
+                <clr-dg-column>Beneficiary Number</clr-dg-column>
+
+                <clr-dg-row *ngFor="let beneficiary of beneficiaries" (click)="beneficiaryOpen(beneficiary)">
+                    <clr-dg-cell>{{beneficiary.beneficiaryDemography}}</clr-dg-cell>
+                    <clr-dg-cell>{{beneficiary.beneficiaryNumber}}</clr-dg-cell>
+                </clr-dg-row>
+
+            </clr-datagrid>
+
+            <clr-modal [(clrModalOpen)]="beneficiaryToggle" *ngIf="selectedBeneficiary">
+                <h3 class="modal-title">Edit Beneficiary</h3>
+                <div class="modal-body">
+                    <form>
+                        <section class="form-block">
+                            <div class="form-group">
+                                <label for="aForm_1">Beneficiary Demography</label>
+                                <input type="text" name="name" id="aForm_1" placeholder="Enter value here" [(ngModel)]="selectedBeneficiary.beneficiaryDemography" size="45">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aForm_2">Beneficiary Number</label>
+                                <input type="number" name="number" id="aForm_2" placeholder="Enter another value here" [(ngModel)]="selectedBeneficiary.beneficiaryNumber" size="35">
+                            </div>
+
+                        </section>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" (click)="beneficiaryClose()">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="beneficiarySave()">Save</button>
+                </div>
+            </clr-modal>
+
+        </clr-tab-content>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Spending</button>
+        <clr-tab-content *clrIfActive>
+            <clr-datagrid>
+                <clr-dg-column>Item Name</clr-dg-column>
+                <clr-dg-column>Money Spent</clr-dg-column>
+                <clr-dg-column>Description</clr-dg-column>
+
+                <clr-dg-row *ngFor="let spent of spending" (click)="spendingOpen(spent)">
+                    <clr-dg-cell>{{spent.itemName}}</clr-dg-cell>
+                    <clr-dg-cell>{{spent.moneySpent}}</clr-dg-cell>
+                    <clr-dg-cell>{{spent.description}}</clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+
+            <clr-modal [(clrModalOpen)]="spendingToggle" *ngIf="selectedSpending">
+                <h3 class="modal-title">Edit Spending</h3>
+                <div class="modal-body">
+                    <form>
+                        <section class="form-block">
+                            <div class="form-group">
+                                <label for="aForm_1">Item Name</label>
+                                <input type="text" name="name" id="aForm_1" placeholder="Enter value here" [(ngModel)]="selectedSpending.itemName" size="45">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aForm_2">Money Spent</label>
+                                <input type="number" name="number" id="aForm_2" placeholder="Enter another value here" [(ngModel)]="selectedSpending.moneySpent" size="35">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aForm_4">Description</label>
+                                <textarea id="aForm_4" name="description" rows="5" [(ngModel)]="selectedSpending.description"></textarea>
+                            </div>
+
+                        </section>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" (click)="spendingClose()">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="spendingSave()">Save</button>
+                </div>
+            </clr-modal>
+        </clr-tab-content>
+    </clr-tab>
+</clr-tabs>

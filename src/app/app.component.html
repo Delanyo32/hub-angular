@@ -1,21 +1,42 @@
 <clr-main-container>
-  <clr-header>
-    <div class="branding">
-      <a href="#" class="nav-link">
-        <span class="clr-icon clr-clarity-logo"></span>
-        <span class="title">Clarity</span>
-      </a>
+    <clr-header>
+        <div class="branding">
+            <a href="#" class="nav-link">
+                <span class="clr-icon clr-clarity-logo"></span>
+                <span class="title">Ashesi Hub</span>
+            </a>
+        </div>
+        <div class="header-nav" [clr-nav-level]="1">
+            <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Projects</span></a>
+            <div style="display:  flex;flex-direction:  column;justify-content:  center;">
+                <span class="nav-text" *ngIf="api.selectedProject">{{api.selectedProject.project.projectName}}</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <clr-dropdown>
+                <button class="nav-text" clrDropdownTrigger>
+                           <div *ngIf="auth.userProfile"> {{auth.userProfile.name}}</div>
+                            <clr-icon shape="caret down"></clr-icon>
+                        </button>
+                <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                    <a href="..." clrDropdownItem>Preferences</a>
+                    <a clrDropdownItem (click)="auth.logout()">Log out</a>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+    </clr-header>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+        <clr-vertical-nav>
+            <a clrVerticalNavLink routerLink="./project" routerLinkActive="active">Dashboard</a>
+            <a clrVerticalNavLink routerLink="./activities" routerLinkActive="active">Activities</a>
+            <a clrVerticalNavLink routerLink="./application" routerLinkActive="active">Appliaction Data</a>
+            <a clrVerticalNavLink routerLink="./reflections" routerLinkActive="active">Reflections</a>
+            <a clrVerticalNavLink routerLink="./analytics" routerLinkActive="active">Analytics</a>
+            <a clrVerticalNavLink routerLink="./settings" routerLinkActive="active">Project Settings</a>
+        </clr-vertical-nav>
     </div>
-      <div class="header-nav" [clr-nav-level]="1">
-          <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
-          <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active"><span class="nav-text">About</span></a>
-      </div>
-    <div class="header-actions">
-    </div>
-  </clr-header>
-  <div class="content-container">
-    <div class="content-area">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+
 </clr-main-container>
