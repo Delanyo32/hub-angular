@@ -8,6 +8,8 @@ import { retryWhen } from 'rxjs/operator/retryWhen';
 @Injectable()
 export class ApiService {
   selectedProject:any;
+  baseUrl = "https://ashesi-hub.herokuapp.com/"
+  localUrl="http://localhost:3000/"
 
   constructor(public http: Http, public router: Router) { }
 
@@ -16,7 +18,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/getProjects", "{}", options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getProjects", "{}", options).map(res => res.json())
 
   }
 
@@ -24,7 +26,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/getProjectById", userId, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getProjectById", userId, options).map(res => res.json())
 
   }
 
@@ -32,7 +34,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/getBeneficiariesOverTime", userId, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getBeneficiariesOverTime", userId, options).map(res => res.json())
 
   }
 
@@ -40,7 +42,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/getSpendingOverTime", userId, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getSpendingOverTime", userId, options).map(res => res.json())
 
   }
 
@@ -48,7 +50,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/getVolunteersOverTime", userId, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getVolunteersOverTime", userId, options).map(res => res.json())
 
   }
 
@@ -56,7 +58,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/rangeVolunteersOverTime", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/rangeVolunteersOverTime", data, options).map(res => res.json())
 
   }
 
@@ -64,7 +66,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/volunteersBreakdown", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/volunteersBreakdown", data, options).map(res => res.json())
 
   }
 
@@ -72,7 +74,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/rangeBeneficiariesOverTime", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/rangeBeneficiariesOverTime", data, options).map(res => res.json())
 
   }
 
@@ -80,7 +82,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/beneficiariesBreakdown", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/beneficiariesBreakdown", data, options).map(res => res.json())
 
   }
 
@@ -88,7 +90,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/rangeSpendingOverTime", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/rangeSpendingOverTime", data, options).map(res => res.json())
 
   }
 
@@ -96,7 +98,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/spendingBreakdown", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/spendingBreakdown", data, options).map(res => res.json())
 
   }
 
@@ -104,7 +106,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/addComment", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/addComment", data, options).map(res => res.json())
 
   }
 
@@ -112,7 +114,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post("http://localhost:3000/api/updateProject", data, options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/updateProject", data, options).map(res => res.json())
 
   }
 

@@ -14,7 +14,7 @@ export class AuthService {
     domain: 'code-envoys.auth0.com',
     responseType: 'token id_token',
     audience: 'https://code-envoys.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/callback',
+    redirectUri: 'https://ashesihub.firebaseapp.com/callback',
     scope: 'openid profile'
   });
 
@@ -24,7 +24,7 @@ export class AuthService {
     this.auth0.authorize();
   }
 
-  
+
   getProfile() {
     if (!this.userProfile) {
       var accessToken = localStorage.getItem('access_token');
