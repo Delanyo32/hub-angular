@@ -49,7 +49,7 @@ export class AnalyticsPageComponent implements OnInit {
     this.chartsData = config
     if(this.api.selectedProject){
       var data = {
-        id:this.api.selectedProject._id,
+        id:this.api.selectedProject.id,
         min:this.convertToTimestamp(this.fromDate),
         max:this.convertToTimestamp(this.toDate)
       }
@@ -261,7 +261,7 @@ export class AnalyticsPageComponent implements OnInit {
 
   search(){
     var data = {
-      id:this.api.selectedProject._id,
+      id:this.api.selectedProject.id,
       min:this.convertToTimestamp(this.fromDate),
       max:this.convertToTimestamp(this.toDate)
     }

@@ -1,22 +1,20 @@
 <div class="container" [ngSwitch]="isLoggedIn()">
     <div *ngSwitchCase="false">
-        <p>Authentication Required. Click the Button below to Login</p>
+        <p>Authenticatin Required. Click the Button below to Login</p>
         <button class="btn btn-outline" (click)="login()">Login</button>
     </div>
-    <div *ngSwitchCase="true">
+    <div *ngSwitchCase="true" class = "project-list">
         <h2>Project List</h2>
         <p>Here is the list of the current projects in the Database</p>
         <clr-datagrid>
             <clr-dg-column>User ID</clr-dg-column>
             <clr-dg-column>Owner Name</clr-dg-column>
             <clr-dg-column>Project Name</clr-dg-column>
-            <clr-dg-column>Application Status</clr-dg-column>
 
-            <clr-dg-row *ngFor="let project of projects" (click)="selectProject(project)">
+            <clr-dg-row *ngFor="let project of projects" (click)="selectProject(project._id)">
                 <clr-dg-cell>{{project._id}}</clr-dg-cell>
-                <clr-dg-cell>{{project.fullName}}</clr-dg-cell>
-                <clr-dg-cell>{{project.project.projectName}}</clr-dg-cell>
-                <clr-dg-cell>{{project.applicationStatus}}</clr-dg-cell>
+                <clr-dg-cell>{{project._source.fullName}}</clr-dg-cell>
+                <clr-dg-cell>{{project._source.project.projectName}}</clr-dg-cell>
             </clr-dg-row>
 
             <clr-dg-footer>{{projects.length}} projects</clr-dg-footer>

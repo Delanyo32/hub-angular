@@ -25,6 +25,9 @@ export class SettingsPageComponent implements OnInit {
   beneficiaryToggle:boolean = false
   beneficiaries:Array<any>;
 
+  projectId:string;
+  statusCode: Number;
+
 
 
   constructor(public api:ApiService,public router: Router) { }
@@ -206,6 +209,20 @@ export class SettingsPageComponent implements OnInit {
 
     this.activities = newArray
     this.apiSave()
+  }
+
+  delete(){
+    let id = {"id":this.project.id}
+    this.api.deleteProject(id).subscribe(data => {
+      if(data.status){
+        console.log(data);
+        this.router.navigate(["/home"])
+      }else{
+        console.log(data);
+      }
+      
+    }
+  );
   }
 
 }

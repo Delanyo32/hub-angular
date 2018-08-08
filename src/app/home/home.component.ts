@@ -31,15 +31,20 @@ export class HomeComponent implements OnInit{
     getProjects(){
         this.api.getProjects().subscribe(data=>{
             if(data.status){
-                this.projects = data.data
+                this.projects = data.projects
             }
         })
     }
 
-    selectProject(project){
-        this.api.selectedProject = project
-        //console.log(project)
-        this.router.navigate(["/project"])
+    selectProject(id){
+        let uid = {"id":id}
+        this.api.getProjectsById(uid).subscribe(data=>{
+            if(data.status){
+                //console.log(data)
+                this.api.selectedProject = data.project
+                this.router.navigate(["/page/project"])
+            }
+        })
     }
 
 }

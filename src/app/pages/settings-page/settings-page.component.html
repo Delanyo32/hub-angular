@@ -96,6 +96,7 @@
 
         </clr-tab-content>
     </clr-tab>
+
     <clr-tab>
         <button clrTabLink>Beneficiaries</button>
         <clr-tab-content *clrIfActive>
@@ -180,6 +181,18 @@
                     <button type="button" class="btn btn-primary" (click)="spendingSave()">Save</button>
                 </div>
             </clr-modal>
+        </clr-tab-content>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Delete</button>
+        <clr-tab-content *clrIfActive>
+            <h3>Are You Sure?</h3>
+            <p>Please note that this project will completely be removed from the database</p>
+            <button class="btn btn-danger" (click)="delete()">
+            <clr-icon shape="trash"></clr-icon>
+                Delete
+            </button>
         </clr-tab-content>
     </clr-tab>
 </clr-tabs>

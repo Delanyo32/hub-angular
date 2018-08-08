@@ -8,7 +8,7 @@ import { retryWhen } from 'rxjs/operator/retryWhen';
 @Injectable()
 export class ApiService {
   selectedProject:any;
-  baseUrl = "https://ashesi-hub.herokuapp.com/"
+  baseUrl = ""
   localUrl="http://localhost:3000/"
 
   constructor(public http: Http, public router: Router) { }
@@ -18,7 +18,7 @@ export class ApiService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.baseUrl+"api/getProjects", "{}", options).map(res => res.json())
+    return this.http.post(this.baseUrl+"api/getProjectsSummary", "{}", options).map(res => res.json())
 
   }
 
@@ -116,6 +116,13 @@ export class ApiService {
 
     return this.http.post(this.baseUrl+"api/updateProject", data, options).map(res => res.json())
 
+  }
+
+  deleteProject(projectId){
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.baseUrl+"api/deleteProjectById", projectId).map(res => res.json());
   }
 
 }

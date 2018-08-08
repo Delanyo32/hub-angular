@@ -15,20 +15,26 @@ import { AnalyticsPageComponent } from './pages/analytics-page/analytics-page.co
 import { ApplicationPageComponent } from './pages/application-page/application-page.component'
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { ReflectionsPageComponent } from "./pages/reflections-page/reflections-page.component";
+import { LoginComponent } from './login/login.component';
+import { PageComponent } from './page/page.component';
 
 
 export const ROUTES: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'login', component: LoginComponent},
+    // {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'about', component: AboutComponent},
     {path: 'callback', component: CallbackComponent},
-    {path: 'project', component: ProjectPageComponent},
-    {path: 'activities', component: ActivitiesPageComponent},
-    {path: 'analytics', component: AnalyticsPageComponent},
-    {path: 'application', component: ApplicationPageComponent},
-    {path: 'settings', component: SettingsPageComponent},
-    {path: 'reflections', component: ReflectionsPageComponent},
-
+    {path: 'page', component: PageComponent,
+    children: [
+        {path: 'project', component: ProjectPageComponent},
+        {path: 'activities', component: ActivitiesPageComponent},
+        {path: 'analytics', component: AnalyticsPageComponent},
+        {path: 'application', component: ApplicationPageComponent},
+        {path: 'settings', component: SettingsPageComponent},
+        {path: 'reflections', component: ReflectionsPageComponent},
+    ]},
 
 
     

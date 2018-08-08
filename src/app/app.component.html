@@ -1,5 +1,5 @@
 <clr-main-container>
-    <clr-header>
+    <clr-header >
         <div class="branding">
             <a href="#" class="nav-link">
                 <span class="clr-icon clr-clarity-logo"></span>
@@ -19,24 +19,22 @@
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                 <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                    <a href="..." clrDropdownItem>Preferences</a>
                     <a clrDropdownItem (click)="auth.logout()">Log out</a>
                 </clr-dropdown-menu>
             </clr-dropdown>
         </div>
     </clr-header>
-    <div class="content-container">
-        <div class="content-area">
+
             <router-outlet></router-outlet>
-        </div>
-        <clr-vertical-nav>
+        <!-- <div class="content-area">
+        </div> -->
+        <!-- <clr-vertical-nav *ngIf = "showMenu">
             <a clrVerticalNavLink routerLink="./project" routerLinkActive="active">Dashboard</a>
             <a clrVerticalNavLink routerLink="./activities" routerLinkActive="active">Activities</a>
             <a clrVerticalNavLink routerLink="./application" routerLinkActive="active">Appliaction Data</a>
             <a clrVerticalNavLink routerLink="./reflections" routerLinkActive="active">Reflections</a>
             <a clrVerticalNavLink routerLink="./analytics" routerLinkActive="active">Analytics</a>
             <a clrVerticalNavLink routerLink="./settings" routerLinkActive="active">Project Settings</a>
-        </clr-vertical-nav>
-    </div>
+        </clr-vertical-nav> -->
 
 </clr-main-container>

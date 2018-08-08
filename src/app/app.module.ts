@@ -21,7 +21,9 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AvatarModule } from 'ngx-avatar';
 import { ReflectionsPageComponent } from "./pages/reflections-page/reflections-page.component";
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { LoginComponent } from './login/login.component';
+import { PageComponent } from './page/page.component';
 
 
 
@@ -37,7 +39,9 @@ import { QuillModule } from 'ngx-quill'
         AnalyticsPageComponent,
         ApplicationPageComponent,
         SettingsPageComponent,
-        ReflectionsPageComponent
+        ReflectionsPageComponent,
+        LoginComponent,
+        PageComponent
     ],
     imports: [
         

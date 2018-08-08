@@ -14,6 +14,7 @@ export class AuthService {
     domain: 'code-envoys.auth0.com',
     responseType: 'token id_token',
     audience: 'https://code-envoys.auth0.com/userinfo',
+    //redirectUri: 'http://localhost:4200/callback',
     redirectUri: 'https://ashesihub.firebaseapp.com/callback',
     scope: 'openid profile'
   });
@@ -36,7 +37,7 @@ export class AuthService {
       this.auth0.client.userInfo(accessToken, function(err, profile) {
         if (profile) {
           self.userProfile = profile;
-          console.log(self.userProfile)
+          //console.log(self.userProfile)
          
         }
       });
@@ -52,7 +53,7 @@ export class AuthService {
         this.router.navigate(['/home']);
         this.getProfile()
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
         console.log(err);
       }
     });
@@ -69,7 +70,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   public isAuthenticated(): boolean {
