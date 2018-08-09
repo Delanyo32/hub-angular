@@ -8,8 +8,8 @@ import { retryWhen } from 'rxjs/operator/retryWhen';
 @Injectable()
 export class ApiService {
   selectedProject:any;
-  baseUrl = ""
-  localUrl="http://localhost:3000/"
+  //baseUrl = "https://ashesi-hub.herokuapp.com/"
+  baseUrl="http://localhost:3000/"
 
   constructor(public http: Http, public router: Router) { }
 
