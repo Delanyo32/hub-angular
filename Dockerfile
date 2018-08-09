@@ -12,7 +12,7 @@ WORKDIR /app
 RUN npm install
 
 
-RUN ng build --prod
+RUN npm run build
 
 # Install elasticsearch
 #RUN npm install elasticsearch --save
