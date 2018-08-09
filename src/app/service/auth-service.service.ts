@@ -15,7 +15,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'https://code-envoys.auth0.com/userinfo',
     //redirectUri: 'http://localhost:4200/callback',
-    redirectUri: 'https://ashesihub.firebaseapp.com/callback',
+    redirectUri: 'http://196.13.196.7:4000/callback',
     scope: 'openid profile'
   });
 
