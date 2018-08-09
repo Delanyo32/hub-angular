@@ -9,7 +9,7 @@ import { retryWhen } from 'rxjs/operator/retryWhen';
 export class ApiService {
   selectedProject:any;
   //baseUrl = "https://ashesi-hub.herokuapp.com/"
-  baseUrl="http://localhost:3000/"
+  baseUrl="http://196.13.196.7:3000/"
 
   constructor(public http: Http, public router: Router) { }
 

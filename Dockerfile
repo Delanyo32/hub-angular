@@ -1,9 +1,24 @@
-FROM nginx:1.13.3-alpine
-## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY /dist /usr/share/nginx/html
+# Use node 4.4.5 LTS
+FROM node:latest
+ENV LAST_UPDATED 20160605T165400
 
-EXPOSE 80
+# Copy source code
+COPY . /app
 
-CMD ["nginx", "-g", "daemon off;"]
+# Change working directory
+WORKDIR /app
+
+# Install dependencies
+RUN npm install
+
+
+RUN ng build --prod
+
+# Install elasticsearch
+#RUN npm install elasticsearch --save
+
+# Expose API port to the outside
+EXPOSE 4000
+
+# Launch application
+CMD ["npm","start"]
